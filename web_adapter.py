@@ -1,17 +1,17 @@
 import urllib3
 from bs4 import BeautifulSoup
 
-class WebAdapter
+class WebAdapter:
 
-    def load_data():
+    def load_data(self):
         urllib3.disable_warnings()
         http = urllib3.PoolManager()
-        data = http.request('GET', this.data_src)
+        data = http.request('GET', self.data_src)
 
         try:
             assert data.status == 200
-            this.status = data.status
-            this.data = BeautifulSoup(data.data, 'html.parser')
+            self.status = data.status
+            self.data = BeautifulSoup(data.data, 'html.parser')
             return True
         except AssertionError:
             return False

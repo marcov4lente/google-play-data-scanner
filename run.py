@@ -4,7 +4,13 @@ pip install urllib3
 pip install bs4
 
 """
-from top_apps import TopApps
+from coordinator import CoOrdinator
 
-top_apps = TopApps
-top_apps.scan
+coordinator = CoOrdinator()
+coordinator.farm()
+
+# print('Harvesting top apps')
+# if not top_apps.harvest:
+#     print('Error harvesting top apps')
+# else:
+#     print('Harvesting top apps complete')
