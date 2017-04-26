@@ -4,9 +4,9 @@ class DBAdapter:
 
     def __init__(self):
         self.connection = sqlite3.connect('data.db')
-        self.c = self.connection.cursor()
+        self.cursor = self.connection.cursor()
         query = 'CREATE TABLE IF NOT EXISTS top_apps (id INTEGER PRIMARY KEY, name TEXT, developer TEXT, rank INTEGER, url TEXT, created TEXT DEFAULT current_timestamp);'
-        self.c.execute(query)
+        self.cursor.execute(query)
 
     def insert(self, table_name, data):
         field_count = len(data)
@@ -36,8 +36,5 @@ class DBAdapter:
         for index, value in data.items():
             params.append(value)
 
-        print(query)
-        print(params)
-        exit()
-
-        self.c.execute(query, params)
+        self.cursor.execute(query, params)
+	self.connection.commit()
