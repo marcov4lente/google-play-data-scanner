@@ -11,31 +11,33 @@ class DBAdapter:
     def insert(self, table_name, data):
         field_count = len(data)
 
-        query = 'INSERT INTO '+table_name
-        query += '('
+        query = ' INSERT INTO '+table_name+' ( '
 
         i = 1
         for index, value in data.items():
             query += index
             if(i < field_count):
-                query += ','
+                query += ', '
             i = i + 1
 
-        query += ')'
-        query += 'VALUES ('
+        query += ' ) VALUES ( '
 
         i = 1
         for index, value in data.items():
             query += '?'
             if(i < field_count):
-                query += ','
+                query += ', '
             i = i + 1
 
-        query += ')'
+        query += ' ) '
 
         params = []
 
         for index, value in data.items():
             params.append(value)
+
+        print(query)
+        print(params)
+        exit()
 
         self.c.execute(query, params)
